@@ -1,0 +1,120 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd">
+
+    <!-- Analizar las clase con anotaciones -->
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="umg.edu.jersey" />
+    <mvc:annotation-driven  />
+    <mvc:default-servlet-handler />
+	
+    <!-- Load Properties -->
+    <context:property-placeholder location="classpath:configuration.properties" ignore-unresolvable="true" ignore-resource-not-found="true" />
+
+    <!-- Server Token -->
+
+    <sec:http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="authenticationManager">
+		
+        <sec:intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" requires-channel="http" />
+        <sec:anonymous enabled="false" />
+        <sec:http-basic entry-point-ref="clientAuthenticationEntryPoint" />
+        <sec:custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" />
+        <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
+        <sec:custom-filter ref="corsFilter" after="LAST"/>
+		 
+    </sec:http>
+        	
+    <!-- Autentication Manager de Server Token -->
+	
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider user-service-ref="clientDetailsUserService" />
+    </sec:authentication-manager>
+        
+	
+    <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+        <constructor-arg ref="clientDetails" /> <!-- Clase que se encarga de buscar el clientId y clientPassword -->
+    </bean>
+
+    <!-- Entry point y Entry point Filter de token server -->
+
+    <bean id="clientAuthenticationEntryPoint"
+          class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint">
+        <property name="realmName" value="Oauth 2 security" />
+        <property name="typeName" value="Basic" />
+    </bean>
+	
+    <bean id="clientCredentialsTokenEndpointFilter"
+          class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">
+        <property name="authenticationManager" ref="authenticationManager" />
+    </bean>
+	
+    <!-- Oauth handler acceso denegado -->
+	
+    <bean id="oauthAccessDeniedHandler"
+          class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler">
+    </bean>
+	
+    <!-- Server resource -->
+
+    <sec:http pattern="/resources/**" create-session="never" entry-point-ref="oauthAuthenticationEntryPoint">
+        <sec:anonymous enabled="false" />
+        <sec:intercept-url pattern="/resources/**" access="ROLE_MAQUINA" requires-channel="http"  />
+        <sec:custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+        <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
+    </sec:http>	
+	
+    <!-- Entry point resource -->
+	
+    <bean id="oauthAuthenticationEntryPoint" class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint" />
+	
+    <oauth:resource-server id="resourceServerFilter" resource-id="springsec" token-services-ref="tokenServices" />
+	
+    <bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+        <property name="tokenStore" ref="tokenStore" />
+        <property name="supportRefreshToken" value="true" />
+        <property name="accessTokenValiditySeconds" value="300000" />
+        <property name="clientDetailsService" ref="clientDetails" />
+    </bean>
+	
+    <bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore" />
+	
+    <!-- Server logout -->
+	
+    <sec:http pattern="/logout" create-session="never" entry-point-ref="oauthAuthenticationEntryPoint">
+        <sec:anonymous enabled="false" />
+        <sec:intercept-url pattern="/logout"  requires-channel="http" />
+        <sec:logout invalidate-session="true" logout-url="/logout" success-handler-ref="logoutSuccessHandler"   />
+        <sec:custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+        <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
+    </sec:http>
+	
+    <!-- Server Autorizacion -->
+	
+    <oauth:authorization-server client-details-service-ref="clientDetails" token-services-ref="tokenServices">
+        <oauth:authorization-code  />
+        <oauth:implicit />
+        <oauth:refresh-token  />
+        <oauth:client-credentials  />
+        <oauth:password  authentication-manager-ref="userAuthenticationManager"/>
+    </oauth:authorization-server>
+	
+    <sec:authentication-manager id="userAuthenticationManager" >
+        <sec:authentication-provider  ref="customUserAuthenticationProvider" />
+    </sec:authentication-manager>
+    
+    
+</beans>
