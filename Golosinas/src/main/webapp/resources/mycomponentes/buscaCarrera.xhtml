@@ -1,0 +1,85 @@
+<ui:component 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    >
+    <cc:interface>
+        <cc:attribute name="NomValue"  />
+        <cc:attribute name="WidgetNom"  required="true" />
+        <cc:attribute name="ActualizaCodigo"  required="false" />
+        <cc:attribute name="codigoBusqueda"  required="true" method-signature="void onRowSelect(org.primefaces.event.SelectEvent)" />
+        <cc:attribute name="WidgetOnComplete"  required="false" />
+        <cc:attribute name="ActivaTabla"  required="false" />
+        <cc:attribute name="ProcesoForm"  required="false"/>
+        <cc:attribute name="ProcessForumulario"  required="false"/>
+
+
+    </cc:interface>
+    <cc:implementation>
+        <p:dialog header="Busqueda de Carreras" widgetVar="#{cc.attrs.WidgetNom}" width="50%" height="400" resizable="false" id="formDlg"  
+                  showEffect="clip" hideEffect="clip" modal="true"  closable="true"   appendTo="@(body)" dynamic="true" >
+            <p:ajax event="close"   listener="#{buscaCarrerasBean.handleClose}"  update="formDatos" process="#{cc.attrs.ProcesoForm}"/>
+            
+            <h:form id="formDatos">
+                <p:panelGrid id="panelDatos">
+                    <p:row>
+                        <p:column>
+                            <p:selectOneRadio id="console" value="#{buscaCarrerasBean.tipo}">
+                                <f:selectItem itemLabel="Nombre" itemValue="1"  />
+                                <f:selectItem itemLabel="Código" itemValue="2" />                                
+                            </p:selectOneRadio>
+                        </p:column>
+                        <p:column>
+                            <p:inputText value="#{buscaCarrerasBean.codigoNombre}" id="nombre"  required="true" 
+                                         maxlength="30" size="50" requiredMessage="Ingrese El Nombre o código de carrera" style="text-transform: uppercase;" >
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:watermark for="nombre" value="Ingrese Nombre o código de carrera" />
+                        </p:column>
+                        <p:column>
+                            <p:column>
+                                <p:commandButton value="Consulta" actionListener="#{buscaCarrerasBean.onBuscaCarrera()}" update="formDatos" 
+                                                 styleClass="btn-consulta" onblur="foco('codCat');"/>
+                            </p:column>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:dataTable id="tabAlumnos" var="o" value="#{buscaCarrerasBean.filterCarrera}" paginator="false" rows="15"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+                             {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="30,50,80"  widgetVar="tableWidget" 
+                             emptyMessage="No Existen Alumnos" style="margin-top: 0" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="300" 
+                             selectionMode="single" selection="#{buscaCarrerasBean.datoSelect}" rowKey="#{o.codCarr}"  rendered="#{cc.attrs.ActivaTabla}"
+                             resizableColumns="true"
+                             >
+                    <p:ajax event="rowSelect" listener="#{cc.attrs.codigoBusqueda}" update="#{cc.attrs.ActualizaCodigo}"   process="#{cc.attrs.ProcessForumulario}"/>
+                    <p:column headerText="Código"  sortBy="#{o.codCarr}" style="width: 10%" >  
+                        <h:outputText id="codCarr" value="#{o.codCarr}" />  
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{o.nomCarr}" style="width: 70%" filterBy="#{o.nomCarr}">  
+                        <h:outputText value="#{o.nomCarr}" />  
+                    </p:column>
+                    <p:column headerText="tipo" sortBy="#{o.tipoCarrera}" style="width: 10%">  
+                        <h:outputText value="#{o.tipoCarrera}" />  
+                    </p:column>
+                    <p:column headerText="jornada">
+                        <h:outputText value="#{o.tipoJor}" style="width: 10%"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>   
+        </p:dialog>
+        <script>
+            function foco(idElemento){
+                document.getElementById(idElemento).focus();                
+            }
+            $(function()){
+                $("form:not(.filter) :input:visible:enabled:first").focus();
+            }
+        </script>
+           
+    </cc:implementation>
+</ui:component>

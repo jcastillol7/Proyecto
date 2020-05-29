@@ -1,0 +1,92 @@
+
+<ui:component 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    >
+    <cc:interface>
+        <cc:attribute name="SemesValue" type="java.lang.String" />
+        <cc:attribute name="SAnioValue" type="java.lang.String" />
+        <cc:attribute name="facultValue" type="java.lang.String" />
+        <cc:attribute name="anioValue" type="java.lang.String" />
+        <cc:attribute name="carnetValue" type="java.lang.String" />
+        <cc:attribute name="carnetAction"  required="true" method-signature="void onConsultaAlumnos()" />
+        <cc:attribute name="carnetRefresh"  required="true" method-signature="void refresh()"  />
+        <cc:attribute name="carnetRefreshUpdate"  required="true" />
+        <cc:attribute name="carnetActionUpdate"  required="true" />
+        <cc:attribute name="carnetEstado"      required="false"/>
+        <cc:attribute name="widgetBusqueda"    required="false"/>
+        <cc:attribute name="updateBusqueda"    required="false"/>
+        <cc:attribute name="muestraTabla"      required="false"  method-signature="void showTableBusqueda()"/>
+    </cc:interface>
+    <cc:implementation>
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+        <p:panelGrid id="idPanelAddUsers" class="izqui cnt-carnetAlumno">
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="Sem" value="Semestre y Año:" style="font-weight: 500" />
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{cc.attrs.SemesValue}"  id="Sem" style="width: 15px;text-align: center; margin-right: 3px;" required="true" placeholder="S" maxlength="1" size="2" requiredMessage="Ingrese semestre" >
+                        <f:validateLength minimum="1"/>                        
+                    </p:inputText>                
+                    <p:inputText value="#{cc.attrs.SAnioValue}" id="SAnio" style="width: 40px;text-align: center;" required="true" placeholder="Año" maxlength="4" size="4" requiredMessage="Ingrese Año" >
+                        <f:validateLength minimum="1"/>                        
+                    </p:inputText>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="facultad"  value="Carnet:" style="font-weight:500" />
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{cc.attrs.facultValue}" id="facultad" style="width: 40px !important; text-align: center; margin-right: 3px;" required="true" label="facultad" maxlength="4" size="8" accesskey="anio" requiredMessage="Ingrese la facultad" disabled="#{cc.attrs.carnetEstado}" >
+                        <f:validateLength minimum="1" />
+                    </p:inputText>
+                    <p:watermark for="facultad" value="Facultad" />
+
+                    <p:inputText value="#{cc.attrs.anioValue}" id="anio" style="width: 15px !important; text-align: center;margin-right: 3px;" required="true" label="anio" maxlength="2" size="4" requiredMessage="Ingrese el Anio" disabled="#{cc.attrs.carnetEstado}">
+                        <f:validateLength minimum="1" />
+                    </p:inputText>
+                    <p:watermark for="anio" value="Año" />
+
+                    <p:inputText value="#{cc.attrs.carnetValue}" id="Carnet" style="width: 40px !important; text-align: center;margin-right: 6px;" required="true" label="carnet" maxlength="5" size="10" requiredMessage="Ingrese el Carnet" disabled="#{cc.attrs.carnetEstado}">
+                        <f:validateLength minimum="1" />
+                    </p:inputText>
+                    <p:watermark for="Carnet" value="Carnet" />
+                </p:column>
+                <p:column >
+                    <p:commandButton style="margin-right: 5px;" value="Consulta"   id="ButtonMntAl" update="#{cc.attrs.carnetActionUpdate}"  actionListener="#{cc.attrs.carnetAction}" styleClass="btn-consulta" oncomplete="botonImprime()" />  
+
+                    <p:commandButton style="margin-right: 5px;" value="Otro" actionListener="#{cc.attrs.carnetRefresh}" update="#{cc.attrs.carnetRefreshUpdate}" styleClass="btn-otro" immediate="true" />
+
+                    <p:commandButton id="btnCta" oncomplete="#{cc.attrs.widgetBusqueda}"  icon="ui-icon-search"  immediate="true"  actionListener="#{cc.attrs.muestraTabla}" disabled="true"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+        <script type="text/javascript">
+
+
+            function habilitarBusqueda()
+            {
+                if (document.getElementById('car:car:Sem').value.length == 1) {
+                    if (document.getElementById('car:car:SAnio').value.length == 4) {
+                        $(document.getElementById('car:car:btnCta')).removeAttr('disabled').removeClass('ui-state-disabled');
+                        return true;
+                    }
+                }
+                
+                $(document.getElementById('car:car:btnCta')).attr('disabled', true).addClass('ui-state-disabled');
+                
+            }
+            
+            document.getElementById('car:car:Sem').onblur = habilitarBusqueda;
+            document.getElementById('car:car:SAnio').onblur = habilitarBusqueda;
+        </script>
+    </cc:implementation>
+</ui:component>

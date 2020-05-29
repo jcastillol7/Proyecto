@@ -1,0 +1,85 @@
+<ui:component 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    >
+    <cc:interface>
+        <cc:attribute name="NomValue"  />
+        <cc:attribute name="WidgetNom"  required="true" />
+        <cc:attribute name="ActualizaContra"  required="false" />
+        <cc:attribute name="contraBusqueda"  required="true" method-signature="void onRowSelect(org.primefaces.event.SelectEvent)" />
+        <cc:attribute name="WidgetOnComplete"  required="false" />
+        <cc:attribute name="ActivaTabla"  required="false" />
+        <cc:attribute name="ProcesoForm"  required="false"/>
+        <cc:attribute name="ProcessForumulario"  required="false"/>
+
+
+    </cc:interface>
+    <cc:implementation>
+        <p:dialog header="Busqueda de Catedráticos" widgetVar="#{cc.attrs.WidgetNom}" width="50%" height="400" resizable="false" id="formDlg"  
+                  showEffect="clip" hideEffect="clip" modal="true"  closable="true"   appendTo="@(body)" dynamic="true" >
+            <p:ajax event="close"   listener="#{busquedaContrasena.handleClose}"  update="formDatos" process="#{cc.attrs.ProcesoForm}"/>
+
+            <h:form id="formDatos">
+                <p:panelGrid id="panelDatos">
+                    <p:row>
+                        <p:column>
+                            <p:selectOneRadio id="console" value="#{busquedaContrasena.tipo}">
+                                <f:selectItem itemLabel="Apellidos" itemValue="1" />
+                                <f:selectItem itemLabel="Nombres" itemValue="2" />
+                            </p:selectOneRadio>
+                        </p:column>
+                        <p:column>
+                            <p:inputText value="#{busquedaContrasena.nomApellido}" id="nombre"  required="true"  maxlength="30" size="50"  requiredMessage="Ingrese El Nombre o Apellido" style="text-transform: uppercase;" >
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:watermark for="nombre" value="Nombre o Apellido" />
+                        </p:column>
+                        <p:column>
+                            <p:column>
+                                <p:commandButton value="Consulta" actionListener="#{busquedaContrasena.onBuscaContra()}" update="formDatos" styleClass="btn-consulta" onblur="foco('codCat');"/>
+                            </p:column>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:dataTable id="tabAlumnos" var="c" value="#{busquedaContrasena.listContR}" paginator="false" rows="15"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+                             {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="30,50,80"  widgetVar="tableWidget" 
+                             emptyMessage="No Existen Alumnos" style="margin-top: 0" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="300" 
+                             selectionMode="single" selection="#{busquedaContrasena.datoSelect}" rowKey="#{c.contra}"  rendered="#{cc.attrs.ActivaTabla}"
+                             >
+                    <p:ajax event="rowSelect" listener="#{cc.attrs.contraBusqueda}" update="#{cc.attrs.ActualizaContra}"   process="#{cc.attrs.ProcessForumulario}"/>
+                    <p:column headerText="Contraseña"  sortBy="#{c.contra}" >  
+                        <h:outputText id="codCont" value="#{c.contra}" />  
+                    </p:column>
+                    <p:column headerText="Nombres" sortBy="#{c.nombre}">  
+                        <h:outputText value="#{c.nombre}" />  
+                    </p:column>
+                    <p:column headerText="Apellidos" >  
+                        <h:outputText value="#{c.apellidos}" />  
+                    </p:column>
+                    <p:column headerText="Carnet" sortBy="#{o.carnet}">  
+                        <h:outputText value="#{c.facultad}-#{c.anio}-#{c.carnetI}" />  
+                    </p:column>
+                    <p:column headerText="Fecha de emisión" sortBy="#{c.fechaEmi}">  
+                        <h:outputText value="#{c.fechaEmi}" />  
+                    </p:column>
+                </p:dataTable>
+            </h:form>   
+        </p:dialog>
+        <script>
+            function foco(idElemento){
+                document.getElementById(idElemento).focus();                
+            }
+            $(function()){
+                $("form:not(.filter) :input:visible:enabled:first").focus();
+            }
+        </script>
+           
+    </cc:implementation>
+</ui:component>

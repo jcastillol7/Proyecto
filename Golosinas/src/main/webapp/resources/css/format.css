@@ -1,0 +1,515 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 9, 2015, 4:18:14 PM
+    Author     : William
+*/
+/*.mnt-carnetAlumno, .mnt-carnetAlumno td{
+   border: 2px solid white;
+}*/
+
+.ui-widget {
+    font-size: 1em !important;
+}
+.ui-inputfield.ui-widget.hasDatepicker{    
+    text-align: center;
+}
+.ui-widget-content .ui-inputfield {
+    background: #fff !important;
+    border-color: #BDBDBD !important;
+    font-size: 12px;
+}
+.ui-widget-content .ui-inputfield:focus{
+    background: #FEFEFC;
+    border-color: #1E88E5 !important;
+    border-bottom-color: #1565C0 !important;
+    font-size: 12px;
+    padding: 5px !important;
+    box-shadow: 0 0 2px #1E88E5 !important;
+}
+
+/******BORDE DEL GRID DONDE VA NOMBRE Y NOMBRE CARRERA********/
+.ui-panelgrid .ui-panelgrid-cell {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff !important;
+    margin-top: 10px;
+
+    font-size: 12px;
+}
+/******************************************************************/
+.btn-consulta, .btn-otro, .btn-guardar, .btn-cancel{
+    width: 75px;
+    height: 30px;
+    border: none !important;
+    background: #fff !important;
+    font-weight: bold;
+    color: #fff !important;
+    text-shadow: none !important;
+    box-shadow: 0 0 5px #333;
+}
+.btn-consulta:hover, .btn-otro:hover, .btn-guardar:hover, .btn-cancel:hover, .btn-consulta:focus, .btn-otro:focus, .btn-guardar:focus, .btn-universal:focus, .btn-cancel:focus{
+    box-shadow: 0 0 3px #616161 !important;
+    border: none !important;
+}
+
+.btn-consulta{
+    background-color:#1E88E5 !important;
+}
+.btn-otro{
+    background-color: #EF6C00 !important;
+}
+.btn-guardar{
+    background-color: #4CAF50 !important;
+}
+.btn-cancel{
+    background-color: #DF0101 !important;
+}
+.btn-universal{
+
+    background-color: #C51162 !important;
+    color: #fff !important;
+    height: 35px!important;
+
+}
+.btn-imprime, .btn-imprime-dirIns{
+    float: right;
+    background-image: url("#{resource['images/ic_local_print_shop_black_48dp.png']}") !important;
+    background-repeat: no-repeat !important;
+    background-size: 85% 100% !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: 0 0 0 transparent; 
+    color: transparent !important;
+    font-size: 0px;
+}
+
+.btn-imprime-dirIns{
+    margin-top: -3px !important;
+    width: 28px;
+}
+
+.btn-pdf, .btn-pdf a, .btn-xls, .btn-word, #tabla-impresion img{
+    height: 30px;
+    width: 30px;
+    background-color: transparent !important;
+    color: transparent !important;
+    border: none !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+}
+.btn-pdf{
+    background-image: url("#{resource['images/Pdf.png']}") !important;
+}
+.btn-xls{
+    background-image: url("#{resource['images/Excel.png']}") !important;   
+}
+.btn-word{
+    background-image: url("#{resource['images/Word.png']}") !important;
+}
+.btn-otro-tablas{
+    float: right;
+    margin-top: -3px;
+}
+.general-datos, .general-datos tr, .general-datos td{
+    box-sizing: border-box;
+    margin-top: 10px !important; 
+    -webkit-box-shadow: 0 0 1px #CFD8DC !important;
+    -moz-box-shadow: 0 0 1px #CFD8DC !important;
+    box-shadow: 0 0 1px #CFD8DC !important;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-sizing: border-box;
+    padding: 7px !important;
+}
+.tamanio-general tr td{
+    font-size: 14px !important;
+}
+.tamanio-general tr td:nth-child(1){
+    color:#263238 !important;
+    background-color: #ECEFF1;
+    border-right-color: #CFD8DC !important;
+}
+.ui-widget{
+    font-family: Roboto !important;
+    /*font-weight: 300 ;*/
+}
+.ui-panel {
+    width: 100% !important;
+}
+.ui-panel .ui-panel-content {
+    border: 0px none;
+    background: none repeat scroll 0% 0% transparent;
+    padding: 0 !important;
+}
+table.ui-widget{
+    margin-top: 2px;
+}
+.ui-button {
+    vertical-align: top;
+}
+
+/******************************************************************/
+/*************CABECERAS DE CADA COLUMNA*******************/
+.ui-datatable .ui-datatable-header, .ui-datatable .ui-datatable-footer {
+    background-color: #607D8B!important;
+    color: #fff !important;
+}
+/*.ui-datatable .ui-datatable-header {
+    color: #4F4F4F; #558B2F
+}*/
+.ui-datatable .ui-sortable-column{
+    background: #CFD8DC !important;
+
+    border: 1px solid #E0F2F1;
+}
+th.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: #CFD8DC;
+    color: #4F4F4F;
+    text-shadow: none !important;
+}
+.ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border-color: #B0BEC5  !important;
+    font-size: 12px !important;
+}
+
+.ui-column-title{
+    font-weight: 700;
+    color: #607D8B !important;
+
+    text-shadow: none !important;
+    -webkit-text-shadow: none !important;
+    -moz-text-shadow: none !important;
+}
+.ui-datatable .ui-column-filter {
+    display: block;
+    width: 80% !important;
+    margin: auto;
+    background: #fff !important;
+}
+
+/*********CUERPO DE LA TABLA***********/
+.ui-datatable table {
+    border-collapse: collapse;
+    width: 100% !important;
+    table-layout: fixed;
+    border: none !important;
+    font-size: 11px !important;
+
+}
+.ui-widget-content {
+    color: #607D8B !important;
+    text-align: center !important;
+}
+.ui-datatable tbody tr td {
+    border-color: #ECEFF1;
+}
+.ui-datatable-odd {
+    background: #ECEFF1;
+
+}
+.ui-datatable-even {
+    background: #FFF;
+
+}
+/*****BOTONES DENTRO DE LA TABLA****/
+.btn-in-table{
+    background: #CFD8DC !important;
+
+    margin: auto;
+
+}
+.btn-in-table:hover{
+    background: #90A4AE !important;
+    box-shadow: 0 0 1px #616161 !important;
+
+}
+/***BOTONES DE LOS NUMEROS DE LA PAGINA****/
+
+/******************************************************************/
+/**************LINEA DE SOMBRA DE TODOS LOS BOTONES*******************/
+.ui-state-default {
+    box-shadow: none !important;
+    font-family: Roboto;
+}
+/*******COLOCA EL BORDE EN TODO EL CONTORNO DE LA TABLA*******/
+.ui-datatable{
+    border: 1px solid #CFD8DC !important;
+    box-shadow: none !important;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+/*********CABECERAS DE LA TABLA DE PAGINATOR**********/
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+    padding: 9px !important;
+    background: rgb(243,243,247) !important;
+    border: none !important;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+}
+.ui-paginator .ui-paginator-current {
+    color: #0D47A1 !important;
+}
+/*BOTONES DE LA CABECERA DE LA TABLA*/
+.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-next, 
+.ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, 
+.ui-paginator .ui-paginator-prev {
+    display: inline-block;
+    padding: 2px 6px;
+    margin-left: 1px;
+    margin-right: 1px;
+    text-decoration: none;
+    outline: medium none;
+    background: rgb(243,243,247) !important;
+
+    color: #0D47A1 !important;
+}
+th.ui-state-default.ui-sortable-column.ui-state-active{
+    background: #90A4AE !important;
+    color: #FFF !important;
+}
+
+/******POSICION DE LOS ICONOS******/
+.ui-icon-seek-first{
+    background-position: -80px -162px;
+}
+.ui-icon-seek-prev {
+    background-position: -48px -162px;
+}
+.ui-icon-seek-next{
+    background-position: -32px -162px;
+}
+.ui-icon-seek-end {
+    background-position: -64px -162px;
+}
+
+/*****************FORMATO DEL HEADER DE LAS TABLAS PEQUEÑAS**********************/
+.ui-widget-header{
+    background: #CFD8DC !important; 
+    color: #fff;
+    font-weight: bold;
+    text-shadow: none !important;
+    border: none !important;
+}
+td.ui-widget-header{
+    background: #607D8B !important; 
+
+}
+.ui-helper-clearfix {
+    display: block;
+    color:#37474F;
+}
+/***********************************/
+.ui-selectonemenu .ui-selectonemenu-trigger {
+    background: #90A4AE !important; 
+    border-top: none !important;
+    border-right: none !important;
+}
+
+/*************SE USA PARA DIFERENCIAR LOS CICLOS EN LAS TABLAS DE LOS PENSUM******************/
+.impares{
+    background: #CFD8DC !important;
+}
+.pares{
+    background: #ECEFF1 !important;
+}
+.ui-datatable tr.ui-state-highlight {
+    cursor: pointer;
+    background: #37474F !important;
+    color: #fff !important;
+}
+/*******************/
+tr.ui-state-hover{
+    background: #42A5F5 !important;
+    color: #fff !important;
+}
+/**********PESTAÑAS DEL PANEL************/
+.ui-state-default a:link, .ui-state-default a:visited {
+    text-shadow: none !important;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+    cursor: text;
+    font-size: 12px;
+    color: #1E88E5;
+}
+
+tr.ui-datatable-summaryrow, .ui-datatable .ui-datatable-footer{
+    color: #263238 !important;
+    font-family: Roboto !important;
+}
+
+.ui-widget-header .ui-state-active {
+    border-color: #1E88E5 !important;
+}
+
+.cnt-carnetAlumno tr td:nth-child(2), .cnt-carnetAlumno tr td:nth-child(3), .cnt-carnetAlumno tr td:nth-child(4){
+    padding: 0;
+    margin: 0;
+    padding-right: 2px !important;
+}
+
+.cnt-carnetAlumno tr td:nth-child(5), .cnt-carnetAlumno tr td:nth-child(6){
+    padding: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.cnt-carnetAlumno tr td:nth-child(5){
+    padding-left: 17px;
+}
+.formato-cabecera-btns tr td{
+    padding: 5px 0 0 0 !important;
+    margin: 0 !important;
+    padding-right: 2px !important;
+}
+.formato-cabecera-btns tr td:nth-last-of-type(2){
+    padding-left:  17px !important;
+}
+.formato-cabecera-nobtns tr td{
+    padding: 5px 0 0 0 !important;
+    margin: 0 !important;
+    padding-right: 4px !important;
+}
+.formato-cabecera-nobtns tr td:nth-child(2){
+    padding-right: 17px !important;
+}
+
+/**********TITULO DE LOS DIALOG**********/
+.ui-dialog .ui-dialog-titlebar {
+    background: #01579B !important;
+    color: #FFF !important;
+}
+#tabla-impresion{
+    margin: auto;
+}
+#tabla-impresion tr td{
+    padding: 5px;
+    text-align: center;
+}
+.cabecera-2{
+    background-color: transparent !important;
+}
+.pag_error{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: red;
+}
+/****ESTRUCUTRA DEL DIRE DE INSCRIPCION****/
+.dirIns-content-center{
+    width: 100%;
+}
+.dirIns-ms-cursos, .dirIns-ms-impresion{
+    width: 48%;
+    display: inline-block;
+}
+.dirIns-ms-impresion{
+    float: right;
+}
+.marcados{
+    background: #C3DEF9 !important;
+}
+.xreprobados{
+
+    color:   #660000 !important;
+    font-weight: bold;
+    background: #FFFDFD;
+}
+
+.xaprobados{
+    color:   #206020 !important;
+    font-weight: bold;
+    background: #F2FFF2;
+}
+
+
+/*Control del detalle de la info del grid colapsado*/
+.ui-datostabla tbody tr td{
+    text-align: center !important;
+}
+/*Tamaño de los botones de semanas alternas*/
+.ui-button-text-icon-left .ui-button-text{
+    padding: .5em .5em .5em 2em !important;
+}
+
+.ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    /*margin-right: 2px !important;*/
+}
+
+/*espaciado entre celdas para botones semanas Alternas*/
+.ui-panelgrid-mio .ui-panelgrid-cell-mio{
+    padding-bottom: 0px !important;
+    padding-top: 1px !important;
+
+}
+/*.ui-panelgrid .ui-panelgrid-cell{
+    padding-bottom: 0px !important;
+    padding-top: 1px !important;
+}*/
+
+/*Color del disable en los lugares que se use*/
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+    opacity: 0.75!important;
+}
+.tr-fondo{
+    background-color: rgba(231,231,190,0.5)!important;
+
+}
+.ui-widget-header-mio {
+    background-color: #1E88E5!important;
+}
+
+.ui-expanded-row{
+    background-color: #275575!important;
+    color: white!important;
+}
+.btn-boolean-true {
+    background-color: green!important;
+}
+.btn-boolean-false{
+    background-color: red!important;
+}
+.ui-button-aceptar{
+    width: 100px!important;
+    color: white!important;
+    background-color: #8fbc27!important;
+    height: 30px;
+}
+.ui-button-noAcep{
+    width:100px!important;
+    color: white!important;
+    background-color: #e2257d!important;
+    height: 30px;
+}
+.ui-button-Salir{
+    width: 100px!important;
+    color: white!important;
+    background-color: #4475b2!important;
+    height: 30px;
+}
+.ui-button-imprimir{
+    width: 80px!important;
+    color: white!important;
+    background-color:  #555555!important;
+    height: 30px!important;
+}
+
+.ui-button-mostrar{
+    width: 100px!important;
+    color: white!important;
+    background-color: #1565C0!important;
+    height: 30px;
+}
+/*Editor de celdas mio*/
+
+.ui-cell-editor-output-mio {
+    display: table-cell!important;
+}
+.ui-cell-editor-input-mio {
+
+}

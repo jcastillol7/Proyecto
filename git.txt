@@ -1,0 +1,65 @@
+
+…or create a new repository on the command line
+echo "# Prueba3" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/jcastillol7/Prueba3.git
+git push -u origin master
+                
+…or push an existing repository from the command line
+git remote add origin https://github.com/jcastillol7/Prueba3.git
+git push -u origin master
+…or import code from another repository
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+
+git commit -m ""	para guardar cada cambio realizado
+
+git init		para iniciar a trabajar en el repositorio git
+
+Bump c3p0 from 0.9.5.2 to 0.9.5.4 in /Webservices dependencies
+#1 opened 38 minutes ago by dependabot bot
+1 com.mchange:c3p0 vulnerability found in Webservices/pom.xml 39 minutes ago
+Remediation
+Upgrade com.mchange:c3p0 to version 0.9.5.3 or later. For example:
+
+<dependency>
+  <groupId>com.mchange</groupId>
+  <artifactId>c3p0</artifactId>
+  <version>[0.9.5.3,)</version>
+</dependency>
+
+ org.eclipse.jetty:jetty-server to version 9.3.24.v20180605 
+<dependency>
+  <groupId>org.eclipse.jetty</groupId>
+  <artifactId>jetty-server</artifactId>
+  <version>[9.3.24.v20180605,)</version>
+</dependency>
+
+
+org.springframework.security.oauth:spring-security-oauth2
+
+<dependency>
+  <groupId>org.springframework.security.oauth</groupId>
+  <artifactId>spring-security-oauth2</artifactId>
+  <version>[2.0.17,)</version>
+</dependency>
+
+Remediation
+Upgrade org.springframework.security:spring-security-core to version 4.1.1 or later. For example:
+
+<dependency>
+  <groupId>org.springframework.security</groupId>
+  <artifactId>spring-security-core</artifactId>
+  <version>[4.1.1,)</version>
+</dependency>
+
+Remediation
+Upgrade org.springframework:spring-core to version 4.3.17 or later. For example:
+
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-core</artifactId>
+  <version>[4.3.17,)</version>
+</dependency>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="es">
+
+    <h:head>  
+        <h:outputStylesheet  name="css/index.css" />
+    </h:head>  
+    <h:body>  
+        <ui:composition template="/templates/plantillaLayout.xhtml">
+            <ui:define name="div_principal">
+                <h:form id="usuarioAcc">        
+                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+
+                    <p:panel   id="panelAccesos" toggleable="true" style="margin-bottom: 50px" >
+
+                        <p:dataTable id="table" var="o" value="#{maquinaEnsam.listadoEstablecimientos}" widgetVar="datatableWidgetVar"    style="width: 98%;display: block;margin: 0 auto"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                     {LastPageLink} {RowsPerPageDropdown} {Exporters}"  rowsPerPageTemplate="25,50,75,100" rows="25" paginatorPosition="top" paginator="true" filteredValue="#{maquinaEnsam.filterEstablecimientos}"> 
+                            <f:facet name="{Exporters}" >
+                                <p:commandButton value="Imprimir" ajax="false" style="float: right" styleClass="btn-pdf">
+                                    <p:fileDownload value="#{maquinaEnsam.onImprime()}" />
+                                </p:commandButton>
+
+                            </f:facet>
+
+                            <p:column id="esta" headerText="Ensamblador" style="text-align:left;width:20%" filterBy="#{o.ensamblador}" filterMatchMode="contains" >  
+                                #{o.ensamblador}  
+                            </p:column>
+                            <p:column id="direccion" headerText="Numero de Maquinas Ensambladas" style="text-align:left;width:10%" filterBy="#{o.numeroMaquinas}" filterMatchMode="contains" >  
+                                #{o.numeroMaquinas}  
+                            </p:column>
+                           
+                        </p:dataTable>
+                    </p:panel>  
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html> 

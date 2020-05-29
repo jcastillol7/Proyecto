@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 23, 2015, 4:00:59 PM
+    Author     : William
+*/
+@import url("#{resource['css/fonts.css']}");
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    font-family: Roboto !important;
+    font-weight: 200;
+}
+.pag_error{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("#{resource['images/fondo_error.png']}");
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+}
+#tableEr{
+    margin: 11% auto 0;    
+    color:#FFF;
+}
+#tableEr tr td{
+  
+    text-align: center;
+}
+#tableEr tr:nth-child(2) td, #tableEr tr:nth-child(4) td{
+    padding: 20px;
+}
+
+#tableEr tr:nth-child(2) span{
+    font-size: 50px;
+}
+#tableEr tr:nth-child(3) span{
+    font-family: Roboto-BoldCondensed;
+    font-size: 30px;
+}
+#img_din{
+    width: 200px;
+    height: 200px;
+    background-image: url("#{resource['images/Din_Error.png']}");
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    z-index: 100;
+    color:transparent;
+    margin:auto;
+}
+.btn-redirect{
+    font-family: inherit;
+    border: none;
+    background: #254C87;
+    padding: 10px;
+    color: #FFF;
+    box-shadow: none !important;
+    width: 153px;
+    height: 44px;
+    border-radius: 5px;
+}
+.btn-redirect span{
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    text-shadow: none !important;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 0.1em 0.1em !important;
+}
+

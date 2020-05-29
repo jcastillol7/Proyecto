@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef6ee1e2-85c5-4c7f-940d-1c2b8c64d822">
+	<property name="ireport.zoom" value="1.178973845500001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="repartidor" class="java.lang.String"/>
+	<field name="ruta" class="java.lang.String"/>
+	<field name="montoVenta" class="java.lang.Number"/>
+	<field name="banco" class="java.lang.String"/>
+	<field name="deposito" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="1" width="305" height="34" uuid="44e45769-9c96-46fe-9f84-367893b8b2f2"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Ventas por Repartidor]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" onErrorType="Icon">
+				<reportElement x="0" y="0" width="60" height="50" uuid="86c9ae21-4b7c-4046-a851-f8a2b9c9e6d8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="109" height="20" uuid="a69455b2-9d52-457e-b160-46c7caba8990"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Repartidor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="2" width="83" height="20" uuid="5992f957-54d2-4b44-87cc-9d1eef527f1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="2" width="76" height="20" uuid="cfd96944-cf5e-4dac-8f62-205f21c06082"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="53" height="20" uuid="761ea1f8-f3cb-4835-8201-599639c8379d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="2" width="65" height="20" uuid="022dddc8-a012-4fcf-996a-3b95128ceb25"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deposito]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="142" height="20" uuid="0f0109b3-d51d-4f9a-8d97-d285bc4b003a"/>
+				<textFieldExpression><![CDATA[$F{repartidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="0" width="112" height="20" uuid="7d4e4dc5-a8cd-42ff-8055-a00890eedf13"/>
+				<textFieldExpression><![CDATA[$F{ruta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="0" width="76" height="20" uuid="086a00a9-8645-4cc6-a05a-6c0269d0cdb0"/>
+				<textFieldExpression><![CDATA[$F{montoVenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="0" width="100" height="20" uuid="0c1c16ec-9128-4f9d-8e6a-54a80b7a2616"/>
+				<textFieldExpression><![CDATA[$F{banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="66" height="20" uuid="e3212317-7d42-4bb0-8358-672ea0677855"/>
+				<textFieldExpression><![CDATA[$F{deposito}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

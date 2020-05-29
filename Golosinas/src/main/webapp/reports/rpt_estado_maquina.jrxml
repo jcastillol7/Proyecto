@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef6ee1e2-85c5-4c7f-940d-1c2b8c64d822">
+	<property name="ireport.zoom" value="1.178973845500001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="motivo" class="java.lang.String"/>
+	<field name="ensamblador" class="java.lang.String"/>
+	<field name="establecimiento" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="1" width="305" height="34" uuid="44e45769-9c96-46fe-9f84-367893b8b2f2"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Estado de Maquinas]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" onErrorType="Icon">
+				<reportElement x="0" y="0" width="60" height="50" uuid="86c9ae21-4b7c-4046-a851-f8a2b9c9e6d8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="73" height="20" uuid="a69455b2-9d52-457e-b160-46c7caba8990"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="2" width="84" height="20" uuid="5992f957-54d2-4b44-87cc-9d1eef527f1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="2" width="111" height="20" uuid="cfd96944-cf5e-4dac-8f62-205f21c06082"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Establecimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="0" width="118" height="20" uuid="86b31c79-da68-4ffb-b2a2-2ac72c6d4fa4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ensamblador]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="70" height="20" uuid="f54a8381-737d-404a-b252-cb9d8e2445aa"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="0" width="126" height="20" uuid="fe051e06-aeb4-4e73-9868-1dc0feb0ab77"/>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="0" width="148" height="20" uuid="6f24b8c1-07d4-4499-b601-d035e59edc51"/>
+				<textFieldExpression><![CDATA[$F{ensamblador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="168" height="20" uuid="7dc38456-f773-4fc4-a1f5-11ade9056183"/>
+				<textFieldExpression><![CDATA[$F{establecimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

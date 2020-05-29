@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <h:outputStylesheet name="css/newLogin.css" />
+            <title>Login-Golosinas</title>
+        </h:head>
+        <h:body>
+            <p:focus context="formlogin" />
+            <h:form id="formlogin">
+                
+                <div id="lg1-centro">
+                    <div id="lg1-logo">
+
+                    </div>
+                        <div id="lg1-labeluser">
+                            <p:inputText value="#{UsuariosBean.usuario}" id="username" required="true" label="username" requiredMessage="Ingrese el Usuario" maxlength="14" styleClass="lg1-input lg1-input-user"/>
+                            <p:watermark for="username" value="Usuario" class="lg1-watermark"/>  
+                        </div>
+                        <div id="lg1-ingresouser">
+                            <p:password value="#{UsuariosBean.contrasena}" id="password" required="true" label="password" requiredMessage="Ingrese Contraseña" maxlength="15" styleClass="lg1-input lg1-input-pass"/>
+                            <p:watermark for="password" value="Password" class="lg1-watermark"/>  
+                        </div>
+                        <div id="lg1-btningreso">
+                            <p:commandButton id="loginButton" value="L" update="mensajes"
+                                             actionListener="#{UsuariosBean.buscaLogin()}"
+                                             oncomplete="manejarLogin(xhr, status, args)" styleClass="lg1-boton" />
+                        </div>
+                    <div id="lg1-name">
+
+                    </div>
+                    <p:growl id="mensajes" showDetail="false" life="2000" />
+                </div>
+            </h:form>
+        </h:body>
+        <script type="text/javascript">
+            //<![CDATA[
+            function manejarLogin(xhr, status, args) {
+                if (!args.validationFailed && args.estaLogeado) {
+                    setTimeout(function () {
+                        window.location = args.view;
+                    }, 0);
+                }
+            }
+            //]]>
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        </script>
+    </f:view>
+</html>

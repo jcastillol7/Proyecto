@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef6ee1e2-85c5-4c7f-940d-1c2b8c64d822">
+	<property name="ireport.zoom" value="1.178973845500001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="establecimiento" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="estadop" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="1" width="305" height="34" uuid="44e45769-9c96-46fe-9f84-367893b8b2f2"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Establecimiento por mes]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" onErrorType="Icon">
+				<reportElement x="0" y="0" width="60" height="50" uuid="86c9ae21-4b7c-4046-a851-f8a2b9c9e6d8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="109" height="20" uuid="a69455b2-9d52-457e-b160-46c7caba8990"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Establecimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="2" width="147" height="20" uuid="5992f957-54d2-4b44-87cc-9d1eef527f1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="2" width="57" height="20" uuid="cfd96944-cf5e-4dac-8f62-205f21c06082"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="0" width="70" height="20" uuid="86b31c79-da68-4ffb-b2a2-2ac72c6d4fa4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="493" y="0" width="53" height="20" uuid="761ea1f8-f3cb-4835-8201-599639c8379d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="109" height="20" uuid="4bc3b795-35da-430d-8473-2d4f3ea26833"/>
+				<textFieldExpression><![CDATA[$F{establecimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="150" height="20" uuid="3f938f06-7c8d-40c3-8836-70f7b8ac6b76"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="104" height="20" uuid="ad1a5e97-da9b-4edc-92f8-f8595ebf45b1"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="60" height="20" uuid="0647e367-46d0-4ff3-8bd8-023d2ff5b892"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="100" height="20" uuid="c17ddfd5-c656-45cb-9597-b28e536628b9"/>
+				<textFieldExpression><![CDATA[$F{estadop}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

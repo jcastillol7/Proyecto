@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="es">
+
+    <h:head>  
+        <h:outputStylesheet  name="css/index.css" />
+    </h:head>  
+    <h:body>  
+        <ui:composition template="/templates/plantillaLayout.xhtml">
+            <ui:define name="div_principal">
+                <h:form id="usuarioAcc">        
+                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+                    <p:panel   id="panelInicio" >
+                        <p:focus context="panelInicio"/>  
+
+                        <p:panelGrid id="filtroCate">
+                            <p:row>
+                                <p:column style="width: 70px"  >
+                                    <p:outputLabel for="ini" value="Mes Inicio:" styleClass="tex-for"/>
+                                </p:column>
+
+                                <p:column >
+                                    <p:selectOneMenu id="ini" value="#{mayoristasMensual.inicio}" style="width:125px"  required="true" requiredMessage="Ingrese el mes de inicio" >
+                                        <f:selectItem itemLabel="Seleccione mes" itemValue="" />
+                                        <f:selectItem itemLabel="Enero" itemValue="1" />
+                                        <f:selectItem itemLabel="Febrero" itemValue="2" />
+                                        <f:selectItem itemLabel="Marzo" itemValue="3" />
+                                        <f:selectItem itemLabel="Abril" itemValue="4" />
+                                        <f:selectItem itemLabel="Mayo" itemValue="5" />
+                                        <f:selectItem itemLabel="Junio" itemValue="6" />
+                                        <f:selectItem itemLabel="Julio" itemValue="7" />
+                                        <f:selectItem itemLabel="Agosto" itemValue="8" />
+                                        <f:selectItem itemLabel="Septiembre" itemValue="9" />
+                                        <f:selectItem itemLabel="Octubre" itemValue="10" />
+                                        <f:selectItem itemLabel="Noviembre" itemValue="11" />
+                                        <f:selectItem itemLabel="Diciembre" itemValue="12" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="width: 70px" >
+                                    <p:outputLabel for="fin" value="Mes Final:" styleClass="tex-for" />
+                                </p:column>
+
+                                <p:column >
+                                    <p:selectOneMenu id="fin" value="#{mayoristasMensual.xfin}" style="width:125px"  required="true" requiredMessage="Ingrese el mes final"  >
+                                        <f:selectItem itemLabel="Seleccione mes" itemValue="" />
+                                        <f:selectItem itemLabel="Enero" itemValue="1" />
+                                        <f:selectItem itemLabel="Febrero" itemValue="2" />
+                                        <f:selectItem itemLabel="Marzo" itemValue="3" />
+                                        <f:selectItem itemLabel="Abril" itemValue="4" />
+                                        <f:selectItem itemLabel="Mayo" itemValue="5" />
+                                        <f:selectItem itemLabel="Junio" itemValue="6" />
+                                        <f:selectItem itemLabel="Julio" itemValue="7" />
+                                        <f:selectItem itemLabel="Agosto" itemValue="8" />
+                                        <f:selectItem itemLabel="Septiembre" itemValue="9" />
+                                        <f:selectItem itemLabel="Octubre" itemValue="10" />
+                                        <f:selectItem itemLabel="Noviembre" itemValue="11" />
+                                        <f:selectItem itemLabel="Diciembre" itemValue="12" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="width: 70px" >
+                                    <p:outputLabel for="anio" value="Año:" styleClass="tex-for" />
+                                </p:column>
+
+                                <p:column >
+                                    <p:inputText  value="#{mayoristasMensual.anio}" id="anio" style="width: 60px" styleClass="tex-for"   required="true" requiredMessage="Ingrese el año"/>                    
+                                </p:column>
+                            </p:row>
+                            <p:row>    
+                                <p:column colspan="2" >
+                                    <p:commandButton  value="Consulta" actionListener="#{mayoristasMensual.consumidor}" update="usuarioAcc" style="float: left" styleClass="btn-consulta" />
+                                    <p:commandButton  value="Otro" actionListener="#{mayoristasMensual.refresh}" update="usuarioAcc" style="float: left" styleClass="btn-otro"  />
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid> 
+                    </p:panel>
+                    <p:panel   id="panelAccesos" toggleable="true" style="margin-bottom: 50px" >
+
+                        <p:dataTable id="table" var="o" value="#{mayoristasMensual.listadoEstablecimientos}" widgetVar="datatableWidgetVar"   rendered="#{mayoristasMensual.estado}" style="width: 98%;display: block;margin: 0 auto"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                     {LastPageLink} {RowsPerPageDropdown} {Exporters}"  rowsPerPageTemplate="25,50,75,100" rows="25" paginatorPosition="top" paginator="true" filteredValue="#{mayoristasMensual.filterEstablecimientos}"> 
+                            <f:facet name="{Exporters}" >
+                                <p:commandButton value="Imprimir" ajax="false" style="float: right" styleClass="btn-pdf">
+                                    <p:fileDownload value="#{mayoristasMensual.onImprime()}" />
+                                </p:commandButton>
+
+                            </f:facet>
+
+                            <p:column id="esta" headerText="Establecimiento" style="text-align:left;width:20%" filterBy="#{o.establecimiento}" filterMatchMode="contains" >  
+                                #{o.establecimiento}  
+                            </p:column> 
+                            <p:column id="maquina" headerText="Maquina" style="text-align:left;width:10%" filterBy="#{o.maquina}" filterMatchMode="contains" >  
+                                #{o.maquina}  
+                            </p:column>
+                            <p:column id="direccion" headerText="Dirección" style="text-align:left;width:40%" filterBy="#{o.direccion}" filterMatchMode="contains">  
+                                #{o.direccion}  
+                            </p:column>   
+                            <p:column id="venta" headerText="Venta"  style="text-align:left;width:10%"  filterBy="#{o.venta}" filterMatchMode="contains"  >  
+                                #{o.venta}  
+                            </p:column>  
+
+                            <p:column id="ganancia" headerText="Ganancia"  style="text-align:left;width:10%" filterBy="#{o.gananciaEstablecimiento}" filterMatchMode="contains" >  
+                                #{o.gananciaEstablecimiento}  
+                            </p:column>
+                            <p:column id="diferencia" headerText="Diferencia"  style="text-align:left;width:10%" filterBy="#{o.diferencia}" filterMatchMode="contains" >  
+                                #{o.diferencia}  
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>  
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html> 

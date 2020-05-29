@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/05/2016, 07:11:25 PM
+    Author     : wyuman
+*/
+#logo{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    margin-top: 12%;
+    background-image: url("#{resource['images/logoGrandeMod.png']}");
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    z-index: -100;
+}
+@media only screen and (min-width: 1281px) and (max-width:1367px){
+    #logo{
+        margin-top: 9%;
+    }
+}
+

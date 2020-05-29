@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+
+        <h:head>
+            <h:outputStylesheet  name="css/login.css" />
+            <!--<title>Login Acad</title>-->
+            <title>Login</title>
+        </h:head>
+        <h:body>
+            <div id="lg5-fondo"></div>
+            <div id="lg5-linea">
+                <div id="lg-nombre-sis">UMG - ACAD</div>            
+            </div>
+            <div id="lg5-center">
+                <h:form>
+                    <div id="lg5-cabecera">
+                        <span>Ingreso</span>
+                    </div>
+                    <div id="lg5-centro">
+                        <div id="lg5-user-pass">
+                            <div id="lg-user-img">
+                                use
+                            </div>
+                            <div id="lg-user">
+                                <p:inputText value="#{UsuariosBean.usuario}" id="username" required="true" label="username" requiredMessage="Ingrese el Usuario" maxlength="10" styleClass="inputs" />
+                                <p:watermark for="username" value="Usuario" />  
+                            </div>
+                        </div>
+                        <div id="lg-pass-img">
+                            pas
+                        </div>
+                        <div id="lg-pass">
+                            <p:password value="#{UsuariosBean.contrasena}" id="password" required="true" label="password" requiredMessage="Ingrese la Contraseña" maxlength="14" styleClass="inputs"/>
+                            <p:watermark for="password" value="Password" /> 
+                        </div>
+                    </div>
+                    <div id="lg5-pie">
+                        <p:commandButton id="loginButton" value="LOGIN"
+                                         actionListener="#{UsuariosBean.buscaLogin()}" update=":mensajes"
+                                         oncomplete="manejarLogin(xhr, status, args)" styleClass="lg5-boton" />
+                    </div>
+                </h:form>
+            </div>
+            <div style="">
+            <p:growl id="mensajes" showDetail="false" life="2000" />
+            <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>  
+            <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false">  
+                <p:graphicImage value="/images/loading.gif"  />  
+            </p:dialog> 
+            </div>
+        </h:body>
+        <script type="text/javascript">
+            //<![CDATA[
+            function manejarLogin(xhr, status, args) {
+                if (!args.validationFailed && args.estaLogeado) {
+                    setTimeout(function () {
+                        window.location = args.view;
+                    },0);
+                }
+            }
+            //]]>
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        </script>
+    </f:view>
+</html>

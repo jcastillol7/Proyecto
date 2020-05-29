@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="es">
+
+    <h:head>  
+        <h:outputStylesheet  name="css/index.css" />
+    </h:head>  
+    <h:body>  
+        <ui:composition template="/templates/plantillaLayout.xhtml">
+            <ui:define name="div_principal">
+                <h:form id="usuarioAcc">        
+                    <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+                    <p:panel   id="panelInicio" >
+                        <p:focus context="panelInicio"/>  
+
+                        <p:panelGrid id="filtroCate">
+                            <p:row>
+                                <p:column style="width: 70px"  >
+                                    <p:outputLabel for="ini" value="Mes Inicio:" styleClass="tex-for"/>
+                                </p:column>
+
+                                <p:column >
+                                    <p:selectOneMenu id="ini" value="#{ventRepartidor.mes}" style="width:125px"  required="true" requiredMessage="Ingrese el mes de inicio" >
+                                        <f:selectItem itemLabel="Seleccione mes" itemValue="" />
+                                        <f:selectItem itemLabel="Enero" itemValue="1" />
+                                        <f:selectItem itemLabel="Febrero" itemValue="2" />
+                                        <f:selectItem itemLabel="Marzo" itemValue="3" />
+                                        <f:selectItem itemLabel="Abril" itemValue="4" />
+                                        <f:selectItem itemLabel="Mayo" itemValue="5" />
+                                        <f:selectItem itemLabel="Junio" itemValue="6" />
+                                        <f:selectItem itemLabel="Julio" itemValue="7" />
+                                        <f:selectItem itemLabel="Agosto" itemValue="8" />
+                                        <f:selectItem itemLabel="Septiembre" itemValue="9" />
+                                        <f:selectItem itemLabel="Octubre" itemValue="10" />
+                                        <f:selectItem itemLabel="Noviembre" itemValue="11" />
+                                        <f:selectItem itemLabel="Diciembre" itemValue="12" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column style="width: 70px" >
+                                    <p:outputLabel for="anio" value="Año:" styleClass="tex-for" />
+                                </p:column>
+
+                                <p:column >
+                                    <p:inputText  value="#{ventRepartidor.anio}" id="anio" style="width: 60px" styleClass="tex-for"   required="true" requiredMessage="Ingrese el año"/>                    
+                                </p:column>
+                            </p:row>
+                            <p:row>    
+                                <p:column colspan="2" >
+                                    <p:commandButton  value="Consulta" actionListener="#{ventRepartidor.consumidor}" update="usuarioAcc" style="float: left" styleClass="btn-consulta" />
+                                    <p:commandButton  value="Otro" actionListener="#{ventRepartidor.refresh}" update="usuarioAcc" style="float: left" styleClass="btn-otro"  />
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid> 
+                    </p:panel>
+                    <p:panel   id="panelAccesos" toggleable="true" style="margin-bottom: 50px" >
+
+                        <p:dataTable id="table" var="o" value="#{ventRepartidor.listadoEstablecimientos}" widgetVar="datatableWidgetVar"   rendered="#{ventRepartidor.estado}" style="width: 98%;display: block;margin: 0 auto"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+                                     {LastPageLink} {RowsPerPageDropdown} {Exporters}"  rowsPerPageTemplate="25,50,75,100" rows="25" paginatorPosition="top" paginator="true" filteredValue="#{ventRepartidor.filterEstablecimientos}"> 
+                            <f:facet name="{Exporters}" >
+                                <p:commandButton value="Imprimir" ajax="false" style="float: right" styleClass="btn-pdf">
+                                    <p:fileDownload value="#{ventRepartidor.onImprime()}" />
+                                </p:commandButton>
+
+                            </f:facet>
+
+                            <p:column id="esta" headerText="Repartidor" style="text-align:left;width:20%" filterBy="#{o.repartidor}" filterMatchMode="contains" >  
+                                #{o.repartidor}  
+                            </p:column> 
+                            <p:column id="maquina" headerText="Ruta" style="text-align:left;width:10%" filterBy="#{o.ruta}" filterMatchMode="contains" >  
+                                #{o.ruta}  
+                            </p:column>
+                            <p:column id="direccion" headerText="Monto Venta" style="text-align:left;width:40%" filterBy="#{o.montoVenta}" filterMatchMode="contains">  
+                                #{o.montoVenta}  
+                            </p:column>   
+                            <p:column id="venta" headerText="Banco"  style="text-align:left;width:10%"  filterBy="#{o.banco}" filterMatchMode="contains"  >  
+                                #{o.banco}  
+                            </p:column>  
+
+                            <p:column id="ganancia" headerText="Deposito"  style="text-align:left;width:10%" filterBy="#{o.deposito}" filterMatchMode="contains" >  
+                                #{o.deposito}  
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:panel>  
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html> 

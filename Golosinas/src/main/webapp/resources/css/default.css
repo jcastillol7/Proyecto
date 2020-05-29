@@ -1,0 +1,489 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 9, 2015, 4:18:14 PM
+    Author     : William
+*/
+/*TAMAÑO DE TEXTO DEL CONTENEDOR CENTRAL 10PX*/
+/*TAMAÑO DE TEXTO DEL NOMBRE DE LA PANTALLA 16PX*/
+/*TAMAÑO DE TEXTO DE USUARIO 14PX*/
+/*TAMAÑO DE TEXTO DE LAS CABECERAS DEL MENU 12PX*/
+body {
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 12px;
+    max-width: 100%;  
+    height: 100%;
+}
+
+#contenedor{
+    width: 98%;
+    height: 100%;
+    /*!text-align: center;*/
+    padding-bottom: 50px; 
+    margin: auto;
+    margin-top: 60px;
+}
+/*****************CABECERA********************/
+.sp-header{
+    position: fixed;
+    display: block;
+    background: #313131;
+
+    margin-top: -60px;
+    height: 50px;
+    width: 100%;
+    z-index: 200;
+}
+.sp-bttn-menu, .sp-nomprograma, .sp-usuario, .sp-logout, #sp-mini-menu{
+    height: 100%;
+    width: 10%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    color:#fff;
+}
+.sp-bttn-menu{
+    width: 4%;
+}
+.sp-nomprograma{
+    min-width: 74%;
+    line-height: 300%;
+    font-size: 16px;
+}
+.sp-usuario{
+    min-width: 10%;
+    line-height: 350%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+}
+.sp-logout{
+    min-width: 10%;
+}
+.sp-logout-conf{
+    background-color: #cd3534;
+    display: block;
+    width: 50%;
+    margin: 6px 41%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+  
+}
+.sp-logout-conf a{
+    font-weight: 700;
+    font-size: 15px;
+}
+/*********************************************************/
+/******MENU APARECE MENOR DE UNA RESOLUCION DE 480PX******/
+#sp-mini-menu{
+    display: none;
+}
+
+#sp-minimenu li span{
+    width: 60px;
+    height: 45px;
+    background-color: rgb(255,255,255);
+    color:rgb(176,0,4);
+    display: block;
+}
+#sp-minimenu > li:first-child > span{
+    cursor: pointer;
+    background-image: url("#{resource['images/ic_more_vert_white_24dp.png']}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 23px;
+}
+#sp-minimenu > li{
+    float: right;
+    z-index: 199;
+}
+#sp-minimenu li ul li span:hover{
+    background-color: rgb(240,240,240);
+    cursor: pointer;
+}
+#sp-minimenu li ul{
+    display: none;
+    position: absolute;
+    top:1px;
+    right: 20px;
+    text-align: center;
+    line-height: 500%;
+    z-index: 202;
+}
+#sp-minimenu li ul span{
+    width: 100px;
+   
+}
+#sp-minimenu li:hover > ul{
+    display: block;
+}
+#sp-minimenu li ul{
+    border: 1px solid red;
+}
+/*********************************************************/
+/************MENU LATERAL IZQUIERDO**************/
+.sp-btn-menu{
+    width: 30px;
+    height: 30px;
+    background-image: url("#{resource['images/ic_menu_white_48dp.png']}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: transparent !important;
+    box-shadow: 0 0 transparent;
+    border: none;
+    margin: 9px 15px;
+
+}
+.sp-btn-menu span{
+    font-size: 0 !important;
+}
+.sp-btn-menu:hover, .sp-btn-menu:active{
+    box-shadow: 0 0 0 transparent; 
+    border: none;
+}
+.sp-menu{
+    border: none;
+    width: 30px;
+    height: 30px;
+    z-index: 1000;
+}
+.sp-menu > li:first-child > span {
+    text-align: center;
+    line-height: 200%;
+    border-bottom: 1px solid rgb(192,192,192);
+    background: #01579b;
+    width: 270px;
+    color:rgb(255,255,255);
+    font-size: 14px;
+}
+.sp-menu > li:first-child > span:hover {
+    background: #01579b;
+    cursor: pointer;
+}
+ul{list-style:none;}
+
+.sp-menu li span{
+    width:40px;
+    margin:auto;
+    color:transparent;
+    text-decoration:none;
+    padding:10px 0;
+    display:block;
+}
+.sp-menu > li{
+    float:left;
+}
+
+.sp-menu li ul{
+    position:absolute;
+    min-width:40px;
+}
+
+#sp-mostrarmenu{
+    position:absolute;
+    display: none;
+    height:auto;
+    width: 270px;
+    top:0;
+    bottom:0;
+    left:0;
+    background:rgb(255,255,255);
+    z-index:1050;
+}
+/*************LAS IMAGENES DE LOS MODULOS*****************/
+.sp-seguridad, .sp-sol99, .sp-propuestas, .sp-notas, .sp-contrasenas, .sp-estadisticas{
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    color: transparent;
+    background-color: transparent;
+    border: none;
+
+}
+.sp-seguridad span, .sp-sol99 span, .sp-propuestas span, .sp-notas span, .sp-contrasenas span, .sp-estadisticas span{
+    font-size: 0px !important;
+}
+/******************************/
+.sp-seguridad:hover, .sp-sol99:hover, .sp-notas:hover, .sp-contrasenas:hover, .sp-estadisticas:hover, .sp-contrasenas{
+    box-shadow: 0 0 0 transparent; 
+    color: transparent;
+    font-size: 0px;
+}
+.sp-seguridad{
+    background-image: url("#{resource['images/ic_lock_black_48dp.png']}");
+}
+.sp-seguridad:focus{
+    background-image: url("#{resource['images/seguridad.png']}");
+}
+
+/******************************/
+.sp-sol99{
+    background-image: url("#{resource['images/ic_my_library_books_black_48dp.png']}");
+
+}
+.sp-sol99:focus{
+    background-image: url("#{resource['images/Notepad.png']}");
+}
+/******************************/
+.sp-notas{
+    background-image: url("#{resource['images/ic_check_box_black_48dp.png']}");
+}
+.sp-notas:focus{
+    background-image: url("#{resource['images/Notifications.png']}");
+
+}
+/******************************/
+.sp-contrasenas{
+    background-image: url("#{resource['images/ic_folder_shared_black_36dp.png']}");
+}
+.sp-contrasenas:focus{
+    background-image: url("#{resource['images/StickyNotes.png']}");
+}
+/******************************/
+.sp-propuestas{
+    background-image: url("#{resource['images/ic_person_black_48dp.png']}");
+}
+.sp-propuestas:focus{
+    background-image: url("#{resource['images/Personal.png']}");
+}
+/******************************/
+.sp-estadisticas{
+    background-image: url("#{resource['images/Chart_Black.png']}");
+}
+.sp-estadisticas:focus{
+    background-image: url("#{resource['images/Chart.png']}");
+}
+/****************ESTILO DEL MENU PRINCIPAL*********/
+.ui-menu .ui-menuitem-link{
+    display: block;
+    width: 96% !important;
+    line-height: 20px !important;
+    margin-top: -2px;
+    border-radius: 0 !important;
+    font-size: 12px !important;
+}
+.ui-menu .ui-menuitem-link:hover{
+    padding-left: 10px;
+}
+#window-modal:target{
+    display: none;
+}
+.ui-menu.ui-menu-dynamic{
+    position: absolute;
+    background: rgb(255,255,255);
+    display: none;
+    z-index: 1050 !important;
+    top: 53px !important;
+    left: 35px !important;
+    width: 225px;
+    bottom: 0;
+    border-radius: 0 !important;
+    box-shadow: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar{
+  width: 8px;
+  background: rgb(207,216,220);
+  border-radius: 5px;
+}
+::-moz-scrollbar{
+  width: 8px;
+  background: rgb(207,216,220);
+  border-radius: 5px;
+}
+li.ui-widget-header{
+    font-size: 12px;
+    background: rgb(237,237,237);
+    text-shadow: none;
+    border-style: none;
+    color: rgb(58,111,178);
+}
+/******QUITA LA SOMBRA A LA HORA DE PASAR EL MOUSE POR EL LINK DEL MENU********/
+li.ui-widget-header.ui-corner-all.ui-state-hover, a.ui-menuitem-link.ui-corner-all.ui-state-hover{
+    box-shadow: 0 0 white;
+    background: transparent;
+}
+/********SPAN DE CADA LI*********/
+.ui-menuitem-text:hover{
+    color: rgb(0,0,0);
+    text-shadow: 0 0 transparent;
+    font-weight: bold;
+}
+.ui-menu.ui-menu-dynamic{
+    background: rgb(255,255,255);
+}
+.ui-menuitem-text{
+    color: #424242;
+    font-size: 11px;
+}
+
+/*************CENTRO************/
+.ui-widget-content {
+    border-style: none;
+    text-align: center !important;
+}
+.prueba{
+    border: none transparent;
+}
+/*********************************************************/
+/*************FOOTER************/
+#footer{
+    position: fixed;
+    background: #313131;
+    box-shadow: 0 0 5px rgb(150,150,150);
+    width: 100%;
+    bottom: 0;
+    height: 30px;
+    clear: both;
+    font-size: 15px;
+    z-index: 100;
+}
+.footer-text{
+    display: block;
+    width: 98%;
+    margin-left: 18px;
+    color: #fff;
+    line-height: 200%;
+}
+/*****EFECTOS QUE CONVELLEVA LOS BOTONES******/
+.ui-state-default button, .ui-widget-content button .ui-state-default button, .ui-widget-header button .ui-state-default button {
+    border: 1px solid #A8A8A8;
+    background: gray !important;
+    font-weight: bold;
+    color: #4F4F4F;
+    text-shadow: none !important;
+}
+/*ANIMACIONES PARA EL MENU*/
+.sp-style-menu{
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-delay: -1;
+    -webkit-animation-name: slidein;
+    -moz-animation-duration: 0.3s;
+    -moz-animation-name: slidein;
+    width: 270px !important;
+}
+
+#window-modal{
+    position: absolute;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 600;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-name: slidein;
+    -moz-animation-duration: 1s;
+    -moz-animation-name: slidein;
+}
+/*******ESTILOS PARA LOS INPUTS*********/
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+    background: none repeat scroll 0% 0% #FFF;
+    box-shadow: 0 0 #fff inset;
+    text-align: left;
+}
+/*MENU Y FONDO*/
+@-webkit-keyframes slidein{
+    from{
+        margin-left:-100%;
+    }
+    to{
+        margin-left:0%;
+    }
+}
+@keyframes slidein{
+    from{
+        margin-left:-100%;
+    }
+    to{
+        margin-left:0%;
+    }
+}
+/**************QUERYS**********************/
+@media only screen and (min-width: 768px) and (max-width:1024px){
+    .sp-bttn-menu{
+        min-width: 8%;
+    }
+    .sp-nomprograma{
+        min-width: 70%;
+    }
+    .sp-usuario{
+        min-width: 10%;
+    }
+    .sp-logout{
+        min-width: 10%;
+    }
+    .sp-logout-conf{
+        margin: 6px 20%;
+    }
+    .sp-logout-conf a{
+        font-weight: 700;
+        font-size: 12px;
+    }
+}
+/*EL DIV DE USUARIO Y LOGOUT SE CONVIERTEN EN UN MENU DESPLEGABLE*/
+@media only screen and (min-width: 480px) and (max-width:767px){
+    .sp-bttn-menu{
+        min-width: 10%;
+    }
+    .sp-nomprograma{
+        min-width: 77%;
+    }
+    .sp-usuario{
+        display: none;
+    }
+    .sp-logout{
+        display: none;
+    }
+    #sp-mini-menu{
+        display: inline-block;
+    }
+
+}
+@media only screen and (max-width:479px){
+    .sp-bttn-menu{
+        min-width: 15%
+    }
+    .sp-nomprograma{
+        min-width: 70%;
+    }
+    .sp-usuario{
+        display: none;
+    }
+    .sp-logout{
+        display: none;
+    }
+    #sp-mini-menu{
+        width: 10%;
+        display: inline-block;
+    }
+
+    .old{
+        color: red !important;
+
+    }
+
+    .disable-select {
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer */
+        -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+        -webkit-user-select: none; /* Chrome, Safari, and Opera */
+        -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+    }
+    
+    .selectable td.ui-selection-column input {
+   display:none;
+}
+}

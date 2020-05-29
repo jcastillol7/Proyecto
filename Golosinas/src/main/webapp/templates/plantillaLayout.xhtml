@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="es">
+
+    <f:view contentType="text/html">
+        <f:view class="xml">
+            <h:head>
+                <f:facet name="first">
+                    <meta charset="utf-8"/>
+                    <meta name ="description" content="Estadisticas UMG"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>Index Golosinas</title>
+                    <h:outputStylesheet  name="css/reset.css"  />
+                    <h:outputStylesheet  name="css/fonts.css"  />
+                    <h:outputStylesheet  name="css/default.css"  />
+                    <h:outputStylesheet  name="css/format.css"  />
+                    <h:outputStylesheet  name="css/index.css" />
+                    <h:outputScript library="javascript" name="jquery-2.1.1.js" />
+                </f:facet>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+                <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"></link>
+                <script defer="" src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+            </h:head>           
+            <h:body>                
+
+                <h:form>
+                    <div class="sp-header" style="background-color: \##{claseColor.colorPopup}">
+                        <div class="sp-bttn-menu">
+                            <p:commandButton  id="sp-menu" class="sp-btn-menu" value="m" onclick="mostrar()" action="#{UsuariosBean.setTituloMenu('')}"  update="tituloMenu" style="font-size: 0" />
+                        </div>
+
+                        <div class="sp-nomprograma" style="color: \##{claseColor.colorLetter}"> 
+                            <h:outputLabel value="#{UsuariosBean.titulo}"  id="tituloPagina"/>
+                        </div>
+                        <div id="sp-mini-menu">
+                            <ul id="sp-minimenu">
+                                <li><span></span>
+                                    <ul>
+                                        <li><span><h:outputLabel value="#{UsuariosBean.usuario}" /></span></li>
+                                        <li><span><p:commandLink id="logout2"
+                                                                 actionListener="#{UsuariosBean.logout()}"
+                                                                 style="text-decoration: none; color: rgb(176,0,4); text-transform: uppercase"
+                                                                 oncomplete="logout(xhr, status, args)"
+                                                                 >
+                                                    <h:outputText value="Logout" />
+                                                </p:commandLink></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sp-usuario">
+                            <div style="color: \##{claseColor.colorLetter}">
+                                <h:outputLabel value="#{UsuariosBean.usuario}" />
+                            </div>
+                        </div>
+
+                        <div class="sp-logout">
+                            <div class="sp-logout-conf">
+                                <p:commandLink id="logout"
+                                               actionListener="#{UsuariosBean.logout()}"
+                                               style="text-decoration: none; color: #fff; text-transform: uppercase"
+                                               oncomplete="logout(xhr, status, args)"
+                                               >
+                                    <h:outputText value="Logout" />
+                                </p:commandLink>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sp-mostrarmenu" class="sp-style-menu">
+                        <ul id="sp-menuPrincipal" class="sp-menu"  >
+                            <li><span><h:outputText value="&#160;"/><p:outputLabel id="tituloMenu"  value="#{UsuariosBean.tituloMenu}"  /></span>
+                                <ul>
+                                    <li><span style="#{UsuariosBean.muestraSecurity==true?'display:block':'display:none'}">
+                                            <p:commandButton id="buttonSecurity"  value="m" styleClass="sp-seguridad" rendered="#{UsuariosBean.muestraSecurity}" action="#{UsuariosBean.setTituloMenu('Seguridad')}" update="tituloMenu"  />
+                                            <p:menu model="#{UsuariosBean.modelSecurity}"  trigger="buttonSecurity" overlay="true"  my="left top" at="left bottom" toggleable="true"  />                                          
+                                        </span>                                    
+                                    </li>
+                                    <li><span style="#{UsuariosBean.muestraSol==true?'display:block':'display:none'}">
+                                            <p:commandButton id="buttonSol"  value="m" styleClass="sp-sol99"  rendered="#{UsuariosBean.muestraSol}" action="#{UsuariosBean.setTituloMenu('Administrativo')}" update="tituloMenu"/>
+                                            <p:menu model="#{UsuariosBean.modelSol}"  trigger="buttonSol" overlay="true"  my="left top" at="left bottom" toggleable="true" />
+                                        </span>
+                                    </li>
+                                    <li><span style="#{UsuariosBean.muestraProp==true?'display:block':'display:none'}" >
+                                            <p:commandButton id="buttonProp"  value="m" styleClass="sp-propuestas" rendered="#{UsuariosBean.muestraProp}" action="#{UsuariosBean.setTituloMenu('Propuestas')}" update="tituloMenu"/>
+                                            <p:menu model="#{UsuariosBean.modelProp}"  trigger="buttonProp" overlay="true"  my="left top" at="left bottom" toggleable="true" />
+                                        </span>
+                                    </li>
+                                    <li><span style="#{UsuariosBean.muestraEstadisticas==true?'display:block':'display:none'}">
+                                            <p:commandButton id="buttonEstadisticas"  value="m" styleClass="sp-estadisticas" rendered="#{UsuariosBean.muestraEstadisticas}" action="#{UsuariosBean.setTituloMenu('Estadisticas')}" update="tituloMenu"/>
+                                            <p:menu model="#{UsuariosBean.modelEstadisticas}"  trigger="buttonEstadisticas" overlay="true"  my="left top" at="left bottom" toggleable="true" />
+                                        </span>
+                                    </li>
+                                    <li><span style="#{UsuariosBean.muestraContrasenas==true?'display:block':'display:none'}">
+                                            <p:commandButton id="buttonContrasenas"  value="m" styleClass="sp-contrasenas" rendered="#{UsuariosBean.muestraContrasenas}" action="#{UsuariosBean.setTituloMenu('Contrasenas')}" update="tituloMenu"/>
+                                            <p:menu model="#{UsuariosBean.modelContrasenas}"  trigger="buttonContrasenas" overlay="true"  my="left top" at="left bottom" toggleable="true" />
+                                        </span>
+                                    </li>
+
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+                <div id="contenedor">
+                    <h:form>
+                        <!--<div style="position:absolute; width:30px; height:30px; margin-left: 90%; margin-top: .3%;">
+                            <p:commandButton value="Color" type="button" onclick="PF('dlg').show();" />
+                        </div>-->
+                        <p:dialog header="Colores" widgetVar="dlg" modal="true" showEffect="explode" height="100">
+                            <h:form>
+                                <p:panelGrid style="text-align:center">
+                                    <p:row>
+                                        <p:column style="text-align:center"><p:colorPicker value="#{claseColor.colorPopup}"/></p:column>
+                                        <p:column style="text-align:center"><p:colorPicker value="#{claseColor.colorLetter}"/></p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column style="text-align:center"><p:commandButton value="Fondos" update="@(form)"  style="margin-left: 20px" /></p:column>
+                                        <p:column style="text-align:center"><p:commandButton value="Letra" update="@(form)" style="margin-left: 20px" /></p:column>                                     
+                                    </p:row>
+                                </p:panelGrid>
+                            </h:form>
+                        </p:dialog>  
+                    </h:form>
+                    <p:layoutUnit position="center"  id="div_principal"  style=" border-style:none;">
+                        <ui:insert name="div_principal" id="div_principal" >
+                            Página en construcción
+                        </ui:insert>
+                    </p:layoutUnit>
+                    <div style="clear: both">
+                    </div>
+                </div>
+
+                <h:form id="footers">
+                    <div id="footer" style="background-color: \##{claseColor.colorPopup}">
+                        <div>
+                            <span class="footer-text">Sistema de Maquinas </span>
+                        </div>
+                    </div>
+                </h:form> 
+
+                <!--COLOCAR EL H:FORM ACA CUANDO SE TERMINE DE MODIFICAR EL HEADER-->
+                <div id="window-modal" onclick="ocultar()"></div>
+
+            </h:body>
+            <!--Impresion con qz-Print-->
+            <script type="text/javascript">
+
+                function mostrar() {
+                    document.getElementById('window-modal').style.display = 'block';
+                    document.getElementById('sp-mostrarmenu').style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    window.scrollTo(0, 0);
+                }
+                function ocultar() {
+                    document.getElementById('window-modal').style.display = 'none';
+                    document.getElementById('sp-mostrarmenu').style.display = 'none';
+                    document.body.style.overflow = 'visible';
+                }
+            </script>
+
+            <script type="text/javascript">
+                function logout(xhr, status, args) {
+                    setTimeout(function () {
+                        window.location = 'Login.xhtml';
+                    }, 500);
+                }
+                //<![CDATA[
+                function ActualizaForm(form, status, args) {
+
+                    if (!args.validationFailed && args.Actualizado) {
+                        /*setTimeout(function() {
+                         window.location = args.view;
+                         }, 500);*/
+                        //document.formUser.submit();
+                        document.getElementById(form).submit();
+                    }
+                }
+                function LimpiaData(form, status, args) {
+
+                    if (!args.validationFailed && args.Actualizado) {
+                        /*setTimeout(function() {
+                         window.location = args.view;
+                         }, 500);*/
+                        //document.formUser.submit();
+                        location.reload();
+                    }
+                }
+                //]]> 
+
+
+                function LimpiaForm(form) {
+                    document.getElementById(form).reset();
+                    location.reload();
+                }
+
+
+
+                /* $(".ui-widget-header").click(function () {
+                 $(".ui-menuitem-link").toggle("slow", function () {
+                 // Animation complete.
+                 });
+                 });*/
+
+            </script>
+        </f:view >
+    </f:view>
+</html>

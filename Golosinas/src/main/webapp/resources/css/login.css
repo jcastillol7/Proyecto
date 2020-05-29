@@ -1,0 +1,162 @@
+@import url("#{resource['css/fonts.css']}");
+body{
+    font-family: Roboto !important;
+}
+*{
+    margin:0;
+    padding: 0;
+}
+#lg5-center{
+    margin: 17% auto auto;
+    width: 300px;
+    height: 300px;
+    background: #FFF;
+    text-align:center;
+    box-shadow: 0 0 10px #9E9E9E;
+}
+#lg5-cabecera{
+    width: 100%;
+    height: 50px;
+    background: #254C87;
+    box-shadow: 0 4px 5px -1px #9E9E9E;
+}
+#lg5-cabecera span{
+    font-weight: 400;
+    font-size: 22px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 235%;
+    text-align: center;
+    color: #FFF;
+}
+#lg5-center input{
+    width: 150px;
+    font-family: Roboto !important;
+    background: rgb(255,255,255) !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border: 1px solid #fff !important;
+    border-bottom: 1px solid #E0E0E0 !important;
+    border-radius: 0;
+    color: #254C87 !important;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.lg4-boton{
+    color: transparent !important;
+}
+#lg5-center input:focus{
+    border-bottom-color: #254C87 !important;
+}
+.ui-button {
+    font-weight: 400;
+    width: 151px;
+    background:#254C87;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    color: #FFF;
+}
+#lg5-centro{
+    box-sizing: border-box;
+    padding: 55px;
+}
+#lg5-linea{
+    position: fixed;
+    margin-top: 55px;
+    width: 100%;
+    height: 200px;
+    background-image: url("#{resource['images/Linea.png']}");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: -100;
+}
+#lg-nombre-sis{
+    position: absolute;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+    bottom: 0;
+    right: 10px;
+}
+#lg5-linea span{
+    display: block;
+    font-family: Roboto-BoldCondensed;
+    font-size:35px; 
+    line-height: 200px;
+    color:#FFF;
+}
+#lg5-fondo{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+    z-index: -200;
+}
+#lg-user-img, #lg-user{
+    display: inline-block;    
+}
+#lg-pass-img, #lg-pass{
+    display: inline-block;
+}
+#lg-user-img{
+    background-image: url("#{resource['images/ic_account_box_black_36dp.png']}");
+    background-size: 93% 114%;
+    background-repeat: no-repeat;
+    color: transparent;
+}
+#lg-pass-img{
+    background-image: url("#{resource['images/ic_lock_black_36dp.png']}");
+    background-size: 93% 114%;
+    background-repeat: no-repeat;
+    color: transparent;
+}
+/********STATUS BAR********/
+.ui-dialog {
+    width: 340px !important;
+    position: relative !important;
+    margin: auto;
+}
+.ui-dialog .ui-dialog-content {
+    padding: 0 !important;
+}
+.ui-dialog .ui-dialog-titlebar {
+    background: transparent !important;
+    padding: 0 !important;
+}
+.ui-dialog .ui-dialog-title {
+    font-family: Roboto;
+    color: #254C87;
+    font-size: 15px;
+    text-shadow: none;
+    text-align: center;
+}
+.ui-shadow {
+    border: none !important;
+    box-shadow: none !important;
+}
+.ui-widget-overlay{
+    display: none !important;
+}
+.ui-widget-content {
+    background: transparent !important;
+    top:-10% !important;
+    left: -1% !important;
+}
+.ui-growl .ui-widget{
+    background: red !important;
+}
+.ui-growl-title{
+    font-family: Roboto;
+    font-size: 15px !important;
+}
+.ui-growl-message p{
+    font-size: 12px !important;
+}
+.ui-overlay-hidden {
+    visibility: visible !important;
+}

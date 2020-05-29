@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef6ee1e2-85c5-4c7f-940d-1c2b8c64d822">
+	<property name="ireport.zoom" value="1.178973845500001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="ensamblador" class="java.lang.String"/>
+	<field name="numeroMaquinas" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="1" width="305" height="34" uuid="44e45769-9c96-46fe-9f84-367893b8b2f2"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Maquinas Ensambladas]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" onErrorType="Icon">
+				<reportElement x="0" y="0" width="60" height="50" uuid="86c9ae21-4b7c-4046-a851-f8a2b9c9e6d8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="0" width="109" height="20" uuid="a69455b2-9d52-457e-b160-46c7caba8990"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ensamblador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="2" width="201" height="20" uuid="5992f957-54d2-4b44-87cc-9d1eef527f1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Num. Maquinas Ensambladas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="0" width="223" height="20" uuid="ff8194ec-6770-48fe-825f-32834a745786"/>
+				<textFieldExpression><![CDATA[$F{ensamblador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="0" width="149" height="20" uuid="09d7402f-eac5-4cba-893d-ec3534f2c158"/>
+				<textFieldExpression><![CDATA[$F{numeroMaquinas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
